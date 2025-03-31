@@ -1,6 +1,124 @@
+:root {
+    --primary-color: #000;
+    --secondary-color: #9c4ee6;
+    --tertiary-color: #ff55b0;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: #CCC;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--primary-color);
+}
+
+/* Navbar */
+#main-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#main-navbar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#logo {
+    width: 50px;
+}
+
+#gamerank-title {
+    color: var(--secondary-color);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+#search-form {
+    margin-right: 140px;
+}
+
+#search {
+    border: 1px solid #fff;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: transparent;
+    color: #fff;
+    min-width: 350px;
+}
+
+#search-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color));
+}
+
+.nav-item {
+    font-size: 14px;
+}
+
+/* Home */
+#main-container {
+    flex: 1;
+}
+
+/* Footer */
+#footer {
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+#footer p {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+#social-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#social-container li {
+    display: inline-block;
+    margin: 0px 20px 20px;
+    height: 20px;
+    width: 20px;
+}
+
+#social-container a {
+    color: #fff;
+    transition: .5s;
+}
+
+#social-container li i {
+    font-size: 25px;
+}
+
+#social-container li:hover i {
+    background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
