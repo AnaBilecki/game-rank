@@ -2,6 +2,8 @@
     --primary-color: #000;
     --secondary-color: #9c4ee6;
     --tertiary-color: #ff55b0;
+    --success-color: #26A96C;
+    --error-color: #D7263D;
 }
 
 * {
@@ -75,6 +77,43 @@ body {
 
 .nav-item {
     font-size: 14px;
+}
+
+.msg-container {
+    width: 30%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: 20px;
+    background-color: #26A96C;
+    position: relative;
+}
+
+.msg {
+    color: #fff;
+    text-align: center;
+}
+
+.msg.error {
+    background-color: var(--error-color);
+}
+  
+.msg.success {
+    background-color: var(--success-color);
+}
+
+.toast-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
+.toast-button i {
+    color: #fff;
 }
 
 /* Home */

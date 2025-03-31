@@ -3,6 +3,7 @@
     include_once("config/db.php");
     include_once("config/globals.php");
 
+    $toast = [];
 ?>
 
 <!DOCTYPE html>
@@ -40,3 +41,12 @@
             </div>
         </nav>
     </header>
+    <?php if(!empty($toast["msg"])): ?>
+        <div id="toast" class="msg-container">
+            <button class="toast-button" onclick="closeToast()">
+                <i class="fas fa-times"></i>
+            </button>
+            <p class="msg <?= $toast["type"] ?>"><?= $toast["msg"] ?></p>
+        </div>
+    <?php endif; ?>
+    

@@ -14,5 +14,14 @@
         </div>
         <p>&copy; 2025 Game Rank</p>
     </footer>
+
+    <script>
+        function closeToast() {
+            let toast = document.getElementById("toast");
+            if (toast) {
+                toast.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
