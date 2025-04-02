@@ -4,6 +4,9 @@
     include_once("config/globals.php");
 
     $toast = [];
+
+    $currentFile = basename($_SERVER["PHP_SELF"]);
+    $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidden" : "";
 ?>
 
 <!DOCTYPE html>
@@ -26,13 +29,13 @@
                 <img src="<?= $BASE_URL ?>/img/logo.png" alt="Game Rank" id="logo">
                 <span id="gamerank-title">GAME RANK</span>
             </a>
-            <form action="" method="GET" id="search-form">
+            <form action="" method="GET" id="search-form" class="<?= $hidden ?>">
                 <input type="search" name="query" id="search" placeholder="Busque um jogo...">
                 <button type="submit" id="search-button">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <div id="navbar">
+            <div id="navbar" class="<?= $hidden ?>">
                 <ul class="navbar-container">
                     <li class="nav-item">
                         <a href="<?= $BASE_URL ?>/auth.php">Entrar</a>
