@@ -39,6 +39,12 @@ body {
     gap: 20px;
 }
 
+.navbar-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
 #logo {
     width: 50px;
 }
@@ -77,6 +83,7 @@ body {
 
 .nav-item {
     font-size: 14px;
+    list-style-type: none;
 }
 
 .hidden {

@@ -3,6 +3,7 @@
 include_once("config/db.php");
 include_once("config/globals.php");
 include_once("models/Message.php");
+include_once("dao/UserDAO.php");
 
 $message = new Message($BASE_URL);
 
@@ -11,6 +12,10 @@ $toast = $message->getMessage();
 if (!empty($toast["message"])) {
     $message->clearMessage();
 }
+
+$userDao = new UserDao($conn, $BASE_URL);
+
+$userData = $userDao->verifyToken(false);
 
 $currentFile = basename($_SERVER["PHP_SELF"]);
 $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidden" : "";
@@ -46,10 +51,15 @@ $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidde
             </form>
             <div id="navbar" class="<?= $hidden ?>">
                 <ul class="navbar-container">
-                    <li class="nav-item">
-                        <a href="<?= $BASE_URL ?>/auth.php">Entrar</a>
-                    </li>
-                </ul>
+                    <?php if ($userData): ?>
+                        <li class="nav-item">
+                            <a href="<?= $BASE_URL ?>/logout.php">Sair</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a href="<?= $BASE_URL ?>/auth.php">Entrar</a>
+                        </li>
+                    <?php endif; ?>
             </div>
         </nav>
     </header>
