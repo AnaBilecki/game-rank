@@ -11,13 +11,18 @@ class User
     public $image;
     public $bio;
     public $token;
+
+    public function generateToken()
+    {
+        return bin2hex(random_bytes(50));
+    }
 }
 
 interface UserDAOInterface
 {
 
     public function buildUser($data);
-    public function create(User $user, $authUser = false);
+    public function create(User $user, $auth = false);
     public function update(User $user, $redirect = true);
     public function verifyToken($protected = false);
     public function setTokenToSession($token, $redirect = true);

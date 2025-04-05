@@ -50,3 +50,16 @@ if (strlen($password) < 6 || !preg_match("/[0-9]/", $password) || !preg_match("/
     $message->setMessage("A senha deve ter pelo menos 6 caracteres, incluindo letras e números.", "error", "back");
     return;
 }
+
+$user = new User();
+
+$token = $user->generateToken();
+$hashPassword = password_hash($password, PASSWORD_DEFAULT);
+
+$user->email = $email;
+$user->name = $name;
+$user->lastname = $lastname;
+$user->password = $hashPassword;
+$user->token = $token;
+
+$userDao->create($user, true);

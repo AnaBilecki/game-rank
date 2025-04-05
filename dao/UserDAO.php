@@ -1,16 +1,19 @@
 <?php
 
 include_once("models/User.php");
+include_once("models/Message.php");
 
 class UserDAO implements UserDAOInterface
 {
     private $conn;
     private $url;
+    private $message;
 
     public function __construct(PDO $conn, $url)
     {
         $this->conn = $conn;
         $this->url = $url;
+        $this->message = new Message($url);
     }
 
     public function buildUser($data)
@@ -29,13 +32,40 @@ class UserDAO implements UserDAOInterface
         return $user;
     }
 
-    public function create(User $user, $authUser = false) {}
+    public function create(User $user, $auth = false)
+    {
+
+        $stmt = $this->conn->prepare("INSERT INTO user(
+                name, lastname, email, password, token
+            ) VALUES (
+                :name, :lastname, :email, :password, :token
+            )");
+
+        $stmt->bindParam(":name", $user->name);
+        $stmt->bindParam(":lastname", $user->lastname);
+        $stmt->bindParam(":email", $user->email);
+        $stmt->bindParam(":password", $user->password);
+        $stmt->bindParam(":token", $user->token);
+
+        $stmt->execute();
+
+        if ($auth) {
+            $this->setTokenToSession($user->token);
+        }
+    }
 
     public function update(User $user, $redirect = true) {}
 
     public function verifyToken($protected = false) {}
 
-    public function setTokenToSession($token, $redirect = true) {}
+    public function setTokenToSession($token, $redirect = true)
+    {
+        $_SESSION["token"] = $token;
+
+        if ($redirect) {
+            $this->message->setMessage("Seja bem-vindo(a)!", "success", "edit_profile.php");
+        }
+    }
 
     public function authenticateUser($email, $password) {}
 
