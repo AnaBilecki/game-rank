@@ -88,10 +88,10 @@ body {
     padding: 15px;
     border: none;
     border-radius: 5px;
-    margin-left: auto;
-    margin-right: 20px;
-    background-color: #26A96C;
-    position: relative;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
 .msg {
@@ -99,11 +99,21 @@ body {
     text-align: center;
 }
 
-.msg.error {
+.msg-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.msg-content {
+    color: #fff;
+}
+
+.msg-container.error {
     background-color: var(--error-color);
 }
   
-.msg.success {
+.msg-container.success {
     background-color: var(--success-color);
 }
 

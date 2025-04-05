@@ -1,27 +1,36 @@
 <?php
 
-    include_once("config/db.php");
-    include_once("config/globals.php");
+include_once("config/db.php");
+include_once("config/globals.php");
+include_once("models/Message.php");
 
-    $toast = [];
+$message = new Message($BASE_URL);
 
-    $currentFile = basename($_SERVER["PHP_SELF"]);
-    $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidden" : "";
+$toast = $message->getMessage();
+
+if (!empty($toast["message"])) {
+    $message->clearMessage();
+}
+
+$currentFile = basename($_SERVER["PHP_SELF"]);
+$hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidden" : "";
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Rank</title>
-    <link rel="icon" href="<?= $BASE_URL ?>/img/joystick.png" type="image/png"/>
+    <link rel="icon" href="<?= $BASE_URL ?>/img/joystick.png" type="image/png" />
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <nav id="main-navbar">
@@ -44,12 +53,18 @@
             </div>
         </nav>
     </header>
-    <?php if(!empty($toast["msg"])): ?>
-        <div id="toast" class="msg-container">
+    <?php if (!empty($toast["message"])): ?>
+        <div id="toast" class="msg-container <?= $toast["type"] ?>">
             <button class="toast-button" onclick="closeToast()">
                 <i class="fas fa-times"></i>
             </button>
-            <p class="msg <?= $toast["type"] ?>"><?= $toast["msg"] ?></p>
+            <div class="msg-content">
+                <?php if ($toast["type"] == "error"): ?>
+                    <i class="fa-solid fa-circle-exclamation fa-lg"></i>
+                <?php elseif ($toast["type"] == "success"): ?>
+                    <i class="fa-solid fa-circle-check fa-lg"></i>
+                <?php endif; ?>
+                <p class="msg"><?= $toast["message"] ?></p>
+            </div>
         </div>
     <?php endif; ?>
-    
