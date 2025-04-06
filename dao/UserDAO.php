@@ -34,11 +34,11 @@ class UserDAO implements UserDAOInterface
 
     public function create(User $user, $auth = false)
     {
-        $stmt = $this->conn->prepare("INSERT INTO user(
+        $stmt = $this->conn->prepare("INSERT INTO user (
                 name, lastname, email, password, token
             ) VALUES (
                 :name, :lastname, :email, :password, :token
-            )");
+        )");
 
         $stmt->bindParam(":name", $user->name);
         $stmt->bindParam(":lastname", $user->lastname);
@@ -53,7 +53,32 @@ class UserDAO implements UserDAOInterface
         }
     }
 
-    public function update(User $user, $redirect = true) {}
+    public function update(User $user, $redirect = true)
+    {
+        $stmt = $this->conn->prepare("UPDATE user SET
+            name = :name,
+            lastname = :lastname,
+            email = :email,
+            image = :image,
+            bio = :bio,
+            token = :token
+            WHERE id = :id
+        ");
+
+        $stmt->bindParam(":name", $user->name);
+        $stmt->bindParam(":lastname", $user->lastname);
+        $stmt->bindParam(":email", $user->email);
+        $stmt->bindParam(":image", $user->image);
+        $stmt->bindParam(":bio", $user->bio);
+        $stmt->bindParam(":token", $user->token);
+        $stmt->bindParam(":id", $user->id);
+
+        $stmt->execute();
+
+        if ($redirect) {
+            $this->message->setMessage("Dados atualizados com sucesso!", "success", "edit_profile.php");
+        }
+    }
 
     public function verifyToken($protected = false)
     {
@@ -82,7 +107,28 @@ class UserDAO implements UserDAOInterface
         }
     }
 
-    public function authenticateUser($email, $password) {}
+    public function authenticateUser($email, $password)
+    {
+        $user = $this->findByEmail($email);
+
+        if ($user) {
+            if (password_verify($password, $user->password)) {
+                $token = $user->generateToken();
+
+                $this->setTokenToSession($token, false);
+
+                $user->token = $token;
+
+                $this->update($user, false);
+
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 
     public function findByEmail($email)
     {
