@@ -53,7 +53,37 @@ $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidde
                 <ul class="navbar-container">
                     <?php if ($userData): ?>
                         <li class="nav-item">
-                            <a href="<?= $BASE_URL ?>/logout.php">Sair</a>
+                            <div class="user">
+                                <button onclick="showMenu(event)">
+                                    <img src="<?= $userData->image ?? "$BASE_URL/img/users/user.png" ?>" id="profile-picture">
+                                </button>
+                            </div>
+                            <ul id="user-menu">
+                                <li>
+                                    <a href="<?= $BASE_URL ?>/" class="user-menu-item">
+                                        <i class="fa-regular fa-user"></i>
+                                        <p>Perfil</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= $BASE_URL ?>/" class="user-menu-item">
+                                        <i class="fa-solid fa-plus"></i>
+                                        <p>Adicionar Jogo</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= $BASE_URL ?>/" class="user-menu-item">
+                                        <i class="fa-regular fa-star"></i>
+                                        <p>Meus Jogos</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= $BASE_URL ?>/logout.php" class="user-menu-item">
+                                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                        <p>Sair</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     <?php else: ?>
                         <li class="nav-item">
