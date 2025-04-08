@@ -39,6 +39,17 @@
             menu.style.display = "none";
         }
     });
+
+    document.getElementById("image").addEventListener("change", function(event) {
+        const fileInput = event.target;
+        const fileNameSpan = document.getElementById("file-name");
+
+        if (fileInput.files.length > 0) {
+            fileNameSpan.textContent = fileInput.files[0].name;
+        } else {
+            fileNameSpan.textContent = "";
+        }
+    });
 </script>
 </body>
 

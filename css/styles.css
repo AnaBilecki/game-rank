@@ -107,8 +107,11 @@ body {
 
 #profile-picture {
     width: 40px;
+    height: 40px;
     border: 2px solid var(--secondary-color);
     border-radius: 100%;
+    background-size: cover;
+    background-position: center;
 }
 
 #user-menu {
@@ -296,6 +299,12 @@ body {
     transition: .5s ease;
 }
 
+#file-name {
+    text-align: center;
+    font-size: 14px;
+    color: #888888;
+}
+
 .file-upload:hover {
     color: var(--secondary-color);
 }
@@ -348,8 +357,8 @@ body {
 }
 
 #vertical-separator {
-    width: 2px;
-    background: linear-gradient(180deg, var(--secondary-color), var(--tertiary-color));
+    width: 1px;
+    background: #fff;
 }
 
 /* Footer */

@@ -59,7 +59,7 @@ $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidde
                         <li class="nav-item">
                             <div class="user">
                                 <button onclick="showMenu(event)">
-                                    <img src="<?= "$BASE_URL/img/users/$userData->image" ?>" id="profile-picture">
+                                    <div id="profile-picture" style="background-image: url('<?= $BASE_URL ?>/img/users/<?= $userData->image ?>')"></div>
                                 </button>
                             </div>
                             <ul id="user-menu">

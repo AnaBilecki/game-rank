@@ -16,6 +16,11 @@ class User
     {
         return bin2hex(random_bytes(50));
     }
+
+    public function imageGenerateName()
+    {
+        return bin2hex(random_bytes(60)) . ".jpg";
+    }
 }
 
 interface UserDAOInterface

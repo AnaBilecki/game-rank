@@ -19,20 +19,21 @@ if ($userData->image == "") {
             <p>Altere seus dados no formulário abaixo:</p>
             <div id="profile-image-container" style="background-image: url('<?= $BASE_URL ?>/img/users/<?= $userData->image ?>')"></div>
             <div class="form-group">
+                <span id="file-name"></span>
                 <label for="image" class="file-upload">Alterar foto</label>
                 <input type="file" id="image" name="image" hidden>
             </div>
             <div class="form-group">
                 <label for="name">Nome:</label>
-                <input type="name" id="name" name="name" placeholder="Digite seu nome" value=<?= $userData->name ?>>
+                <input type="name" id="name" name="name" placeholder="Digite seu nome" value="<?= $userData->name ?>">
             </div>
             <div class="form-group">
                 <label for="lastname">Sobrenome:</label>
-                <input type="lastname" id="lastname" name="lastname" placeholder="Digite seu sobrenome" value=<?= $userData->lastname ?>>
+                <input type="lastname" id="lastname" name="lastname" placeholder="Digite seu sobrenome" value="<?= $userData->lastname ?>">
             </div>
             <div class="form-group">
                 <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" readonly class="disabled" value=<?= $userData->email ?>>
+                <input type="email" id="email" name="email" readonly class="disabled" value="<?= $userData->email ?>">
             </div>
             <div class="form-group">
                 <label for="bio">Sobre você:</label>
