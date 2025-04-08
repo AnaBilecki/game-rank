@@ -17,7 +17,7 @@ $userDao = new UserDao($conn, $BASE_URL);
 
 $userData = $userDao->verifyToken(false);
 
-if ($userData->image == "") {
+if ($userData && $userData->image == "") {
     $userData->image = "user.png";
 }
 
@@ -59,7 +59,7 @@ $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidde
                         <li class="nav-item">
                             <div class="user">
                                 <button onclick="showMenu(event)">
-                                    <div id="profile-picture" style="background-image: url('<?= $BASE_URL ?>/img/users/<?= $userData->image ?>')"></div>
+                                    <div id="profile-picture" style="background-image: url('<?= $BASE_URL ?>/img/users/<?= $userData ? $userData->image : "user.png" ?>')"></div>
                                 </button>
                             </div>
                             <ul id="user-menu">
