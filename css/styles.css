@@ -221,7 +221,7 @@ body {
     letter-spacing: 2px;
 }
 
-.form-container {
+.form-login {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -266,6 +266,90 @@ body {
 .form-info a {
     color: #fff;
     font-weight: 400;
+}
+
+/* Profile */
+#profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 60px;
+    padding: 40px;
+    width: 100%;
+}
+
+#profile-image-container {
+  width: 150px;
+  height: 150px;
+  border: 6px solid var(--secondary-color);
+  border-radius: 100%;
+  background-size: cover;
+  background-position: center;
+  margin: 15px auto;
+}
+
+.file-upload {
+    cursor: pointer;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: underline;
+    transition: .5s ease;
+}
+
+.file-upload:hover {
+    color: var(--secondary-color);
+}
+
+.form-profile {
+    width: 40%;
+}
+
+.form-profile p {
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+#user-name, #change-password-title {
+    color: var(--secondary-color);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.form-group .form-control-file {
+    border: none;
+    padding: 0px;
+}
+
+.form-group .disabled {
+    background-color: #383838;
+    border-color: #383838;
+    pointer-events: none;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+    resize: none;
+}
+
+.edit-button {
+    width: 40%;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color));
+    padding: 10px;
+    cursor: pointer;
+}
+
+#vertical-separator {
+    width: 2px;
+    background: linear-gradient(180deg, var(--secondary-color), var(--tertiary-color));
 }
 
 /* Footer */

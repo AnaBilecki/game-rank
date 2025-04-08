@@ -4,7 +4,7 @@ include_once("templates/header.php");
 <div id="main-container">
     <div id="login-container">
         <h2>CRIAR CONTA</h2>
-        <form action="<?= $BASE_URL ?>/register_process.php" method="POST" class="form-container">
+        <form action="<?= $BASE_URL ?>/register_process.php" method="POST" class="login-form">
             <div>
                 <input type="hidden" name="type" value="register">
                 <div class="form-group">
