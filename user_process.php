@@ -51,6 +51,30 @@ if ($type === "update") {
 
     $userDao->update($userData);
 } else if ($type === "change_password") {
+    $password = $_POST["password"];
+    $confirmPassword = $_POST["confirm_password"];
+
+    $userData = $userDao->verifyToken();
+    $id = $userData->id;
+
+    if ($password !== $confirmPassword) {
+        $message->setMessage("As senhas informadas são diferentes.", "error", "back");
+        return;
+    }
+
+    if (strlen($password) < 6 || !preg_match("/[0-9]/", $password) || !preg_match("/[A-Za-z]/", $password)) {
+        $message->setMessage("A senha deve ter pelo menos 6 caracteres, incluindo letras e números.", "error", "back");
+        return;
+    }
+
+    $user = new User();
+
+    $finalPassword = $user->generatePassword($password);
+
+    $user->password = $finalPassword;
+    $user->id = $id;
+
+    $userDao->changePassword($user);
 } else {
     $message->setMessage("Informações inválidas!", "error", "index.php");
 }
