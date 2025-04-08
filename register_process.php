@@ -14,7 +14,7 @@ $email = $_POST["email"];
 $name = $_POST["name"];
 $lastname = $_POST["lastname"];
 $password = $_POST["password"];
-$confirm_password = $_POST["confirm_password"];
+$confirmPassword = $_POST["confirm_password"];
 
 $fields = [
     "email" => "E-mail",
@@ -31,7 +31,7 @@ foreach ($fields as $field => $label) {
     }
 }
 
-if ($password !== $confirm_password) {
+if ($password !== $confirmPassword) {
     $message->setMessage("As senhas informadas são diferentes.", "error", "back");
     return;
 }
