@@ -14,7 +14,7 @@ CREATE TABLE category (
     name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE movie (
+CREATE TABLE game (
     id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	title VARCHAR(100) NOT NULL,
     description TEXT,
@@ -32,8 +32,8 @@ CREATE TABLE review (
     rating INT NOT NULL,
     review TEXT,
     user_id INT(11) UNSIGNED,
-    movie_id INT(11) UNSIGNED,
+    game_id INT(11) UNSIGNED,
     
     FOREIGN KEY(user_id) REFERENCES user(id),
-    FOREIGN KEY(movie_id) REFERENCES movie(id)
+    FOREIGN KEY(game_id) REFERENCES game(id)
 );
