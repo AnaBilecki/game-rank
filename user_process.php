@@ -15,10 +15,10 @@ $type = filter_input(INPUT_POST, "type");
 if ($type === "update") {
     $userData = $userDao->verifyToken();
 
-    $name = $_POST["name"];
-    $lastname = $_POST["lastname"];
-    $email = $_POST["email"];
-    $bio = $_POST["bio"];
+    $name = filter_input(INPUT_POST, "name");
+    $lastname = filter_input(INPUT_POST, "lastname");
+    $email = filter_input(INPUT_POST, "email");
+    $bio = filter_input(INPUT_POST, "bio");
 
     $user = new User();
 
@@ -51,8 +51,8 @@ if ($type === "update") {
 
     $userDao->update($userData);
 } else if ($type === "change_password") {
-    $password = $_POST["password"];
-    $confirmPassword = $_POST["confirm_password"];
+    $password = filter_input(INPUT_POST, "password");
+    $confirmPassword = filter_input(INPUT_POST, "confirm_password");
 
     $userData = $userDao->verifyToken();
     $id = $userData->id;

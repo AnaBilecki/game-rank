@@ -10,8 +10,8 @@ $message = new Message($BASE_URL);
 
 $userDao = new UserDAO($conn, $BASE_URL);
 
-$email = $_POST["email"];
-$password = $_POST["password"];
+$email = filter_input(INPUT_POST, "email");
+$password = filter_input(INPUT_POST, "password");
 
 if (empty($email)) {
     $message->setMessage("O campo E-mail é obrigatório.", "error", "back");

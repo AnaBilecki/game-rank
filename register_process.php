@@ -10,11 +10,11 @@ $message = new Message($BASE_URL);
 
 $userDao = new UserDAO($conn, $BASE_URL);
 
-$email = $_POST["email"];
-$name = $_POST["name"];
-$lastname = $_POST["lastname"];
-$password = $_POST["password"];
-$confirmPassword = $_POST["confirm_password"];
+$email = filter_input(INPUT_POST, "email");
+$name = filter_input(INPUT_POST, "name");
+$lastname = filter_input(INPUT_POST, "lastname");
+$password = filter_input(INPUT_POST, "password");
+$confirmPassword = filter_input(INPUT_POST, "confirm_password");
 
 $fields = [
     "email" => "E-mail",
