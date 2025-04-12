@@ -39,7 +39,7 @@ if ($type === "update") {
                 $imageFile = imagecreatefrompng($image["tmp_name"]);
             }
 
-            $imageName = $user->imageGenerateName();
+            $imageName = $user->generateImageName();
 
             imagejpeg($imageFile, "./img/users/" . $imageName, 100);
 
