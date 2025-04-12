@@ -17,7 +17,7 @@ include_once("templates/header.php");
                 </div>
             </div>
             <div>
-                <input type="submit" value="Entrar" class="login-button">
+                <input type="submit" value="Entrar" class="form-button">
                 <p class="form-info">Não tem uma conta? <a href="<?= $BASE_URL ?>/register.php">Cadastre-se</a></p>
             </div>
         </form>

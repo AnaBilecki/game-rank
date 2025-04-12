@@ -29,7 +29,7 @@ include_once("templates/header.php");
                 </div>
             </div>
             <div>
-                <input type="submit" value="Registrar" class="login-button">
+                <input type="submit" value="Registrar" class="form-button">
                 <p class="form-info">Já tem uma conta? <a href="<?= $BASE_URL ?>/auth.php">Entre</a></p>
             </div>
         </form>

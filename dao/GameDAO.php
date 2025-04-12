@@ -37,7 +37,27 @@ class GameDAO implements GameDAOInterface
     public function getGamesByUserId($id) {}
     public function findById($id) {}
     public function findByTitle($title) {}
-    public function create(Game $game) {}
+
+    public function create(Game $game)
+    {
+        $stmt = $this->conn->prepare("INSERT INTO game (
+                title, description, image, trailer, category_id, user_id
+            ) VALUES (
+                :title, :description, :image, :trailer, :categoryId, :userId 
+        )");
+
+        $stmt->bindParam(":title", $game->title);
+        $stmt->bindParam(":description", $game->description);
+        $stmt->bindParam(":image", $game->image);
+        $stmt->bindParam(":trailer", $game->trailer);
+        $stmt->bindParam(":categoryId", $game->categoryId);
+        $stmt->bindParam(":userId", $game->userId);
+
+        $stmt->execute();
+
+        $this->message->setMessage("Jogo adicionado com sucesso!", "success", "index.php");
+    }
+
     public function update(Game $game) {}
     public function destroy($id) {}
 }

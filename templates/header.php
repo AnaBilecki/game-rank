@@ -70,7 +70,7 @@ $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidde
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?= $BASE_URL ?>/" class="user-menu-item">
+                                    <a href="<?= $BASE_URL ?>/new_game.php" class="user-menu-item">
                                         <i class="fa-solid fa-plus"></i>
                                         <p>Adicionar Jogo</p>
                                     </a>
