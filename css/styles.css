@@ -204,6 +204,87 @@ body {
     flex: 1;
     display: flex;
     justify-content: center;
+    color: #fff;
+}
+
+#main-content {
+    width: 100%;
+    padding: 30px;
+}
+
+.section-title {
+    border-left: 2px solid var(--secondary-color);
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+.section-description {
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.games-container {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.card {
+    width: 20%;
+    border-radius: 10px;
+    border: 1px solid #fff;
+}
+
+.card-image {
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    color: #fff;
+}
+
+.card-body a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.card-rating i {
+    color: #e6cc3e;
+}
+
+.card-title {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.card-button {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+.details-button {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+
+.rating-button {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    transition: .5s ease;
+}
+
+.rating-button:hover {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
 }
 
 /* Login */
