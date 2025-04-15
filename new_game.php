@@ -35,7 +35,7 @@ $categories = $categoryDao->listAll();
                 <select name="category" id="category-select" class="select-option">
                     <option value="0" disabled selected>Selecione uma categoria</option>
                     <?php foreach ($categories as $category): ?>
-                        <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                        <option value="<?= $category->id ?>"><?= $category->name ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

@@ -11,13 +11,31 @@ class CategoryDAO implements CategoryDAOInterface
         $this->conn = $conn;
     }
 
+    public function buildCategory($data)
+    {
+        $category = new Category();
+
+        $category->id = $data["id"];
+        $category->name = $data["name"];
+
+        return $category;
+    }
+
     function listAll()
     {
+        $categories = [];
+
         $stmt = $this->conn->prepare("SELECT * FROM category");
 
         $stmt->execute();
 
-        $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($stmt->rowCount() > 0) {
+            $categoriesArray = $stmt->fetchAll();
+
+            foreach ($categoriesArray as $category) {
+                $categories[] = $this->buildCategory($category);
+            }
+        }
 
         return $categories;
     }
