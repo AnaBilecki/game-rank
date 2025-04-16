@@ -226,10 +226,12 @@ body {
 .games-container {
     display: flex;
     margin-bottom: 40px;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 .card {
-    width: 20%;
+    min-width: 360px;
     border-radius: 10px;
     border: 1px solid #fff;
 }
@@ -285,6 +287,11 @@ body {
 .rating-button:hover {
     color: var(--secondary-color);
     border-color: var(--secondary-color);
+}
+
+.empty-list {
+    text-align: center;
+    width: 100%;
 }
 
 /* Login */

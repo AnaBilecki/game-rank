@@ -25,7 +25,7 @@ class CategoryDAO implements CategoryDAOInterface
     {
         $categories = [];
 
-        $stmt = $this->conn->prepare("SELECT * FROM category");
+        $stmt = $this->conn->query("SELECT * FROM category");
 
         $stmt->execute();
 

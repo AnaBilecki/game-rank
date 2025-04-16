@@ -1,6 +1,6 @@
 <?php
 
-include_once("models/User.php");
+include_once("models/Game.php");
 include_once("models/Message.php");
 
 class GameDAO implements GameDAOInterface
@@ -32,8 +32,49 @@ class GameDAO implements GameDAOInterface
     }
 
     public function findAll() {}
-    public function getLatestGames() {}
-    public function getGamesByCategory($category) {}
+
+    public function getLatestGames()
+    {
+        $games = [];
+
+        $stmt = $this->conn->query("SELECT * FROM game ORDER BY id DESC");
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $gamesArray = $stmt->fetchAll();
+
+            foreach ($gamesArray as $game) {
+                $games[] = $this->buildGame($game);
+            }
+        }
+
+        return $games;
+    }
+
+    public function getGamesByCategory($category)
+    {
+        $games = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM game 
+            WHERE category_id = :category
+            ORDER BY id DESC
+        ");
+
+        $stmt->bindParam(":category", $category);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $gamesArray = $stmt->fetchAll();
+
+            foreach ($gamesArray as $game) {
+                $games[] = $this->buildGame($game);
+            }
+        }
+
+        return $games;
+    }
+
     public function getGamesByUserId($id) {}
     public function findById($id) {}
     public function findByTitle($title) {}
