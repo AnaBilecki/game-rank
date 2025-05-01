@@ -294,6 +294,80 @@ body {
     width: 100%;
 }
 
+/* Dashboard */
+.add-game-container {
+    text-align: right;
+}
+
+.basic-button {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+
+#games-dashboard {
+    margin-top: 30px;
+}
+
+.games-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.games-table th {
+    border-bottom: 1px solid #383838;
+    padding: 10px;
+    color: var(--secondary-color);
+    font-weight: 500;
+}
+
+.games-table td {
+    text-align: center;
+    padding: 15px;
+}
+
+.table-game-title {
+    color: #FFF;
+    font-weight: bold;
+    transition: ease .5s;
+    font-weight: 400;
+}
+
+.table-game-title:hover {
+    color: var(--secondary-color);
+}
+
+.actions-column form {
+    display: inline-block;
+}
+
+.rating-column {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 5px;
+}
+
+.rating-column i {
+    color: #e6cc3e;
+}
+
+.edit-game-button {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.delete-game-button {
+    color: #fff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 /* Login */
 #login-container {
     display: flex;

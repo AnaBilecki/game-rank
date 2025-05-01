@@ -75,7 +75,27 @@ class GameDAO implements GameDAOInterface
         return $games;
     }
 
-    public function getGamesByUserId($id) {}
+    public function getGamesByUserId($id)
+    {
+        $games = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM game 
+            WHERE user_id = :user_id
+        ");
+
+        $stmt->bindParam(":user_id", $id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $gamesArray = $stmt->fetchAll();
+
+            foreach ($gamesArray as $game) {
+                $games[] = $this->buildGame($game);
+            }
+        }
+
+        return $games;
+    }
     public function findById($id) {}
     public function findByTitle($title) {}
 
