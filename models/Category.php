@@ -10,4 +10,5 @@ class Category
 interface CategoryDAOInterface
 {
     public function listAll();
+    public function findById($id);
 }

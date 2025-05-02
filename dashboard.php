@@ -13,11 +13,9 @@ $userData = $userDao->verifyToken(true);
 
 $userGames = $gameDao->getGamesByUserId($userData->id);
 
-print_r($userGames);
-
 ?>
 <div id="main-container">
-    <div id="main-content">
+    <div class="main-content">
         <h2 class="section-title">Dashboard</h2>
         <p class="section-description">Adicione novos jogos ou atualize os que você já cadastrou</p>
         <div class="add-game-container">
@@ -37,13 +35,13 @@ print_r($userGames);
                     <?php foreach ($userGames as $game): ?>
                         <tr>
                             <td scope="row"><?= $game->id ?></td>
-                            <td><a href="<?= $BASE_URL ?>game.php?id=<?= $game->id ?>" class="table-game-title"><?= $game->title ?></a></td>
+                            <td><a href="<?= $BASE_URL ?>/game.php?id=<?= $game->id ?>" class="table-game-title"><?= $game->title ?></a></td>
                             <td class="rating-column"><i class="fas fa-star"></i>9</td>
                             <td class="actions-column">
-                                <a href="<?= $BASE_URL ?>edit_game.php?id=<?= $game->id ?>" class="edit-game-button">
+                                <a href="<?= $BASE_URL ?>/edit_game.php?id=<?= $game->id ?>" class="edit-game-button">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <form action="<?= $BASE_URL ?>game_process.php">
+                                <form action="<?= $BASE_URL ?>/game_process.php">
                                     <input type="hidden" name="type" value="delete">
                                     <input type="hidden" name="id" value="<?= $game->id ?>">
                                     <button type="submit" class="delete-game-button">

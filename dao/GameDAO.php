@@ -96,7 +96,29 @@ class GameDAO implements GameDAOInterface
 
         return $games;
     }
-    public function findById($id) {}
+
+    public function findById($id)
+    {
+        $game = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM game 
+            WHERE id = :id
+        ");
+
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $gameData = $stmt->fetch();
+
+            $game = $this->buildGame($gameData);
+
+            return $game;
+        } else {
+            return false;
+        }
+    }
+
     public function findByTitle($title) {}
 
     public function create(Game $game)

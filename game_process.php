@@ -37,7 +37,7 @@ if ($type === "create") {
     $game->title = $title;
     $game->description = $description;
     $game->categoryId = $category;
-    $game->trailer = $title;
+    $game->trailer = $trailer;
     $game->userId = $userData->id;
 
     if (isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {

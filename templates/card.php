@@ -13,9 +13,9 @@ if (empty($game->image)) {
             <span class="rating">9</span>
         </p>
         <h5 class="card-title">
-            <a href="<?= $BASE_URL ?>/movie.php?id=<?= $game->id ?>"><?= $game->title ?></a>
+            <a href="<?= $BASE_URL ?>/game.php?id=<?= $game->id ?>"><?= $game->title ?></a>
         </h5>
-        <a href="<?= $BASE_URL ?>/movie.php?id=<?= $game->id ?>" class="card-button rating-button">Avaliar</a>
-        <a href="<?= $BASE_URL ?>/movie.php?id=<?= $game->id ?>" class="card-button details-button">Conhecer</a>
+        <a href="<?= $BASE_URL ?>/game.php?id=<?= $game->id ?>" class="card-button rating-button">Avaliar</a>
+        <a href="<?= $BASE_URL ?>/game.php?id=<?= $game->id ?>" class="card-button details-button">Conhecer</a>
     </div>
 </div>

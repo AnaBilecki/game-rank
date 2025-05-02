@@ -9,7 +9,7 @@ $actionGames = $gameDao->getGamesByCategory(1);
 
 ?>
 <div id="main-container">
-    <div id="main-content">
+    <div class="main-content">
         <h2 class="section-title">Jogos adicionados recentemente</h2>
         <p class="section-description">Veja as críticas dos últimos jogos adicionados</p>
         <div class="games-container">

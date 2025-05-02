@@ -21,7 +21,7 @@ class CategoryDAO implements CategoryDAOInterface
         return $category;
     }
 
-    function listAll()
+    public function listAll()
     {
         $categories = [];
 
@@ -38,5 +38,27 @@ class CategoryDAO implements CategoryDAOInterface
         }
 
         return $categories;
+    }
+
+    public function findById($id)
+    {
+        $category = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM category 
+            WHERE id = :id
+        ");
+
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $categoryData = $stmt->fetch();
+
+            $category = $this->buildCategory($categoryData);
+
+            return $category;
+        } else {
+            return false;
+        }
     }
 }
