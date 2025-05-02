@@ -4,6 +4,7 @@ include_once("templates/header.php");
 include_once("models/Game.php");
 include_once("dao/GameDAO.php");
 include_once("dao/CategoryDAO.php");
+include_once("dao/ReviewDAO.php");
 
 $id = filter_input(INPUT_GET, "id");
 
@@ -11,6 +12,7 @@ $game;
 
 $gameDao = new GameDao($conn, $BASE_URL);
 $categoryDao = new CategoryDao($conn, $BASE_URL);
+$reviewDao = new ReviewDao($conn, $BASE_URL);
 
 $ratings = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
 
@@ -35,9 +37,11 @@ if (!empty($userData)) {
     if ($userData->id === $game->userId) {
         $userOwnsGame = true;
     }
+
+    $alreadyReviewed = $reviewDao->hasAlreadyReviewed($id, $userData->id);
 }
 
-$alreadyReviewed = false;
+$gameReviews = $reviewDao->getGamesReview($id);
 
 ?>
 <div id="main-container">
@@ -84,33 +88,12 @@ $alreadyReviewed = false;
                 </form>
             <?php endif; ?>
             <div class="review-container">
-                <div>
-                    <div class="user-info">
-                        <div style="background-image: url('<?= $BASE_URL ?>/img/users/user.png')" class="user-image"></div>
-                        <div>
-                            <h4>
-                                <a href="#">Ana Teste</a>
-                            </h4>
-                            <span class="rating"><i class="fas fa-star"></i> 9</span>
-                        </div>
-                    </div>
-                    <p class="review-label">Comentário:</p>
-                    <p>Este é o comentário do usuário</p>
-                </div>
-                <div class="review-separator"></div>
-                <div>
-                    <div class="user-info">
-                        <div style="background-image: url('<?= $BASE_URL ?>/img/users/user.png')" class="user-image"></div>
-                        <div>
-                            <h4>
-                                <a href="#">Ana Teste</a>
-                            </h4>
-                            <span class="rating"><i class="fas fa-star"></i> 9</span>
-                        </div>
-                    </div>
-                    <p class="review-label">Comentário:</p>
-                    <p>Este é o comentário do usuário</p>
-                </div>
+                <?php foreach ($gameReviews as $review): ?>
+                    <?php include("templates/user_review.php"); ?>
+                <?php endforeach; ?>
+                <?php if (count($gameReviews) == 0): ?>
+                    <p class="empty-list">Não há comentários para este filme ainda.</p>
+                <?php endif; ?>
             </div>
         </div>
     </div>
