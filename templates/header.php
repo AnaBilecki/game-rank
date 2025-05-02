@@ -47,7 +47,7 @@ $hidden = $currentFile == "auth.php" || $currentFile == "register.php"  ? "hidde
                 <img src="<?= $BASE_URL ?>/img/logo.png" alt="Game Rank" id="logo">
                 <span id="gamerank-title">GAME RANK</span>
             </a>
-            <form action="" method="GET" id="search-form" class="<?= $hidden ?>">
+            <form action="<?= $BASE_URL ?>/search.php" method="GET" id="search-form" class="<?= $hidden ?>">
                 <input type="search" name="query" id="search" placeholder="Busque um jogo...">
                 <button type="submit" id="search-button">
                     <i class="fas fa-search"></i>

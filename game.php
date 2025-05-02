@@ -92,7 +92,7 @@ $gameReviews = $reviewDao->getGamesReview($id);
                     <?php include("templates/user_review.php"); ?>
                 <?php endforeach; ?>
                 <?php if (count($gameReviews) == 0): ?>
-                    <p class="empty-list">Não há comentários para este filme ainda.</p>
+                    <p class="empty-list">Não há comentários para este jogo ainda.</p>
                 <?php endif; ?>
             </div>
         </div>

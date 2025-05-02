@@ -294,6 +294,17 @@ body {
     width: 100%;
 }
 
+/* Search */
+.back-link, #search-result {
+    color: var(--secondary-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
 /* Dashboard */
 .add-game-container {
     text-align: right;

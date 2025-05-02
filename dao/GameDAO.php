@@ -39,8 +39,6 @@ class GameDAO implements GameDAOInterface
         return $game;
     }
 
-    public function findAll() {}
-
     public function getLatestGames()
     {
         $games = [];
@@ -127,7 +125,26 @@ class GameDAO implements GameDAOInterface
         }
     }
 
-    public function findByTitle($title) {}
+    public function findByTitle($title)
+    {
+        $games = [];
+
+        $stmt = $this->conn->prepare("SELECT * FROM game WHERE title LIKE :title");
+
+        $stmt->bindValue(":title", '%' . $title . '%');
+
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $gamesData = $stmt->fetchAll();
+
+            foreach ($gamesData as $game) {
+                $games[] = $this->buildGame($game);
+            }
+        }
+
+        return $games;
+    }
 
     public function create(Game $game)
     {

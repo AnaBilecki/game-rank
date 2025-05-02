@@ -22,7 +22,6 @@ interface GameDAOInterface
 {
 
     public function buildGame($data);
-    public function findAll();
     public function getLatestGames();
     public function getGamesByCategory($category);
     public function getGamesByUserId($id);
