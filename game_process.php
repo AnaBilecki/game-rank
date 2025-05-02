@@ -63,6 +63,61 @@ if ($type === "create") {
     }
 
     $gameDao->create($game);
+} else if ($type === "update") {
+    $title = filter_input(INPUT_POST, "title");
+    $description = filter_input(INPUT_POST, "description");
+    $category = filter_input(INPUT_POST, "category");
+    $trailer = filter_input(INPUT_POST, "trailer");
+    $id = filter_input(INPUT_POST, "id");
+
+    if (empty($title)) {
+        $message->setMessage("O campo título é obrigatório.", "error", "back");
+        return;
+    }
+
+    if (empty($category)) {
+        $message->setMessage("O campo categoria é obrigatório.", "error", "back");
+        return;
+    }
+
+    $game = $gameDao->findById($id);
+
+    if ($game) {
+        if ($game->userId === $userData->id) {
+            $game->title = $title;
+            $game->description = $description;
+            $game->categoryId = $category;
+            $game->trailer = $trailer;
+
+            if (isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
+                $image = $_FILES["image"];
+                $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+                $jpgArray = ["image/jpeg", "image/jpg"];
+
+                if (in_array($image["type"], $imageTypes)) {
+                    if (in_array($image["type"], $jpgArray)) {
+                        $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+                    } else {
+                        $imageFile = imagecreatefrompng($image["tmp_name"]);
+                    }
+
+                    $imageName = $game->generateImageName();
+
+                    imagejpeg($imageFile, "./img/games/" . $imageName, 100);
+
+                    $game->image = $imageName;
+                } else {
+                    $message->setMessage("Tipo inválido de imagem, insira png ou jpeg.", "error", "back");
+                }
+            }
+
+            $gameDao->update($game);
+        } else {
+            $message->setMessage("Informações inválidas!", "error", "index.php");
+        }
+    } else {
+        $message->setMessage("Informações inválidas!", "error", "index.php");
+    }
 } else if ($type === "delete") {
     $id = filter_input(INPUT_POST, "id");
 

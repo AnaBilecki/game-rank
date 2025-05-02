@@ -141,7 +141,28 @@ class GameDAO implements GameDAOInterface
         $this->message->setMessage("Jogo adicionado com sucesso!", "success", "index.php");
     }
 
-    public function update(Game $game) {}
+    public function update(Game $game)
+    {
+        $stmt = $this->conn->prepare("UPDATE game SET
+            title = :title,
+            description = :description,
+            category_id = :categoryId,
+            trailer = :trailer,
+            image = :image
+            WHERE id = :id
+        ");
+
+        $stmt->bindParam(":title", $game->title);
+        $stmt->bindParam(":description", $game->description);
+        $stmt->bindParam(":image", $game->image);
+        $stmt->bindParam(":trailer", $game->trailer);
+        $stmt->bindParam(":categoryId", $game->categoryId);
+        $stmt->bindParam(":id", $game->id);
+
+        $stmt->execute();
+
+        $this->message->setMessage("Jogo atualizado com sucesso!", "success", "dashboard.php");
+    }
 
     public function destroy($id)
     {

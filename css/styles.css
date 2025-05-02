@@ -507,6 +507,7 @@ body {
     background: linear-gradient(45deg, var(--secondary-color), var(--tertiary-color));
     padding: 10px;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 .form-info {
@@ -614,7 +615,7 @@ body {
 
 /* Add game */
 .page-content {
-    max-width: 600px;
+    min-width: 560px;
 }
 
 .title-container {
@@ -637,10 +638,6 @@ body {
     border: 1px solid #fff;
     border-radius: 5px;
     background-color: transparent;
-    color: #888;
-}
-
-.select-option.has-value {
     color: #fff;
 }
 
