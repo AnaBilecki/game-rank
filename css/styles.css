@@ -368,6 +368,17 @@ body {
     cursor: pointer;
 }
 
+/* Profile */
+.user-bio {
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.game-title {
+    margin: 20px 0px;
+    font-weight: 400;
+}
+
 /* Game */
 .pipe {
     border: 1px solid #383838;
