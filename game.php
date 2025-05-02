@@ -50,7 +50,7 @@ $gameReviews = $reviewDao->getGamesReview($id);
         <p>
             <span><?= $gameCategory->name ?></span>
             <span class="pipe"></span>
-            <span class="rating"><i class="fas fa-star"></i> 9</span>
+            <span class="rating"><i class="fas fa-star"></i> <?= $game->rating ?></span>
         </p>
         <div class="game-image-container">
             <div class="game-image" style="background-image: url('<?= $BASE_URL ?>/img/games/<?= $game->image ?>')"></div>

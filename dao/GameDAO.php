@@ -3,6 +3,8 @@
 include_once("models/Game.php");
 include_once("models/Message.php");
 
+include_once("dao/ReviewDAO.php");
+
 class GameDAO implements GameDAOInterface
 {
     private $conn;
@@ -27,6 +29,12 @@ class GameDAO implements GameDAOInterface
         $game->trailer = $data["trailer"];
         $game->categoryId = $data["category_id"];
         $game->userId = $data["user_id"];
+
+        $reviewDao = new ReviewDao($this->conn, $this->url);
+
+        $rating = $reviewDao->getRating($game->id);
+
+        $game->rating = $rating;
 
         return $game;
     }

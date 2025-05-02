@@ -10,7 +10,7 @@ if (empty($game->image)) {
     <div class="card-body">
         <p class="card-rating">
             <i class="fas fa-star"></i>
-            <span class="rating">9</span>
+            <span class="rating"><?= $game->rating ?></span>
         </p>
         <h5 class="card-title">
             <a href="<?= $BASE_URL ?>/game.php?id=<?= $game->id ?>"><?= $game->title ?></a>

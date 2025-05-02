@@ -10,6 +10,7 @@ class Game
     public $trailer;
     public $categoryId;
     public $userId;
+    public $rating;
 
     public function generateImageName()
     {

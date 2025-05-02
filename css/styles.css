@@ -462,6 +462,10 @@ body {
     margin: 20px 0px;
 }
 
+.user-name:hover {
+    text-decoration: underline;
+}
+
 /* Login */
 #login-container {
     display: flex;
