@@ -41,7 +41,7 @@ $userGames = $gameDao->getGamesByUserId($userData->id);
                                 <a href="<?= $BASE_URL ?>/edit_game.php?id=<?= $game->id ?>" class="edit-game-button">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <form action="<?= $BASE_URL ?>/game_process.php">
+                                <form action="<?= $BASE_URL ?>/game_process.php" method="POST">
                                     <input type="hidden" name="type" value="delete">
                                     <input type="hidden" name="id" value="<?= $game->id ?>">
                                     <button type="submit" class="delete-game-button">

@@ -63,6 +63,20 @@ if ($type === "create") {
     }
 
     $gameDao->create($game);
+} else if ($type === "delete") {
+    $id = filter_input(INPUT_POST, "id");
+
+    $game = $gameDao->findById($id);
+
+    if ($game) {
+        if ($game->userId === $userData->id) {
+            $gameDao->destroy($game->id);
+        } else {
+            $message->setMessage("Informações inválidas!", "error", "index.php");
+        }
+    } else {
+        $message->setMessage("Informações inválidas!", "error", "index.php");
+    }
 } else {
     $message->setMessage("Informações inválidas!", "error", "index.php");
 }

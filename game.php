@@ -37,6 +37,8 @@ if (!empty($userData)) {
     }
 }
 
+$alreadyReviewed = false;
+
 ?>
 <div id="main-container">
     <div class="main-content">
@@ -59,26 +61,28 @@ if (!empty($userData)) {
         <div>
             <div class="horizontal-separator"></div>
             <h3 class="review-title">Avaliações</h3>
-            <p>Envie sua avaliação</p>
-            <p class="section-description">Preencha o formulário com a nota e com o comentário sobre o jogo</p>
-            <form action="<?= $BASE_URL ?>/review_process.php" method="POST" class="add-review-form">
-                <input type="hidden" name="type" value="create">
-                <input type="hidden" name="game_id" value="<?= $game->id ?>">
-                <div class="form-group">
-                    <label for="rating">Nota do jogo: *</label>
-                    <select name="rating" id="rating" class="select-option">
-                        <option value="">Selecione</option>
-                        <?php foreach ($ratings as $rating): ?>
-                            <option value="<?= $rating ?>"><?= $rating ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="review">Comentário: *</label>
-                    <textarea name="review" id="review" placeholder="O que você achou do jogo?" rows="3"></textarea>
-                </div>
-                <input type="submit" class="edit-button" value="Enviar avaliação">
-            </form>
+            <?php if (!empty($userData) && !$userOwnsGame && !$alreadyReviewed): ?>
+                <p>Envie sua avaliação</p>
+                <p class="section-description">Preencha o formulário com a nota e com o comentário sobre o jogo</p>
+                <form action="<?= $BASE_URL ?>/review_process.php" method="POST" class="add-review-form">
+                    <input type="hidden" name="type" value="create">
+                    <input type="hidden" name="game_id" value="<?= $game->id ?>">
+                    <div class="form-group">
+                        <label for="rating">Nota do jogo: *</label>
+                        <select name="rating" id="rating" class="select-option">
+                            <option value="">Selecione</option>
+                            <?php foreach ($ratings as $rating): ?>
+                                <option value="<?= $rating ?>"><?= $rating ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review">Comentário: *</label>
+                        <textarea name="review" id="review" placeholder="O que você achou do jogo?" rows="3"></textarea>
+                    </div>
+                    <input type="submit" class="edit-button" value="Enviar avaliação">
+                </form>
+            <?php endif; ?>
             <div class="review-container">
                 <div>
                     <div class="user-info">
