@@ -31,7 +31,7 @@ $userGames = $gameDao->getGamesByUserId($id);
 
 ?>
 <div id="main-container">
-    <div class="page-content">
+    <div class="page-profile-content">
         <h1 id="user-name"><?= $fullName ?></h1>
         <div id="profile-image-container" style="background-image: url('<?= $BASE_URL ?>/img/users/<?= $userData->image ?>')"></div>
         <?php if (!empty($userData->bio)): ?>
